@@ -1,0 +1,49 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BoutiqueApp.Views.HomePage"
+             xmlns:vm="clr-namespace:BoutiqueApp.ViewModels"
+             Title="Boutique"
+             x:Name="HomePageView">
+
+    <ContentPage.BindingContext>
+        <vm:HomeViewModel />
+    </ContentPage.BindingContext>
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="🛒" Clicked="OnCartClicked" />
+    </ContentPage.ToolbarItems>
+
+    <VerticalStackLayout Padding="10">
+
+
+        <SearchBar Placeholder="Pretraži proizvode"
+                   Text="{Binding SearchText}"
+                   TextChanged="OnSearchTextChanged" />
+
+
+        <Button Text="Sortiraj po cijeni"
+                Clicked="OnSortClicked"
+                HorizontalOptions="End" />
+
+        
+        <CollectionView ItemsSource="{Binding FilteredProducts}"
+                        SelectionMode="Single"
+                        SelectionChanged="CollectionView_SelectionChanged">
+
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" BorderColor="LightGray" CornerRadius="10">
+                        <VerticalStackLayout Padding="10" Spacing="5">
+                            <Image Source="{Binding ImageUrl}" HeightRequest="120" Aspect="AspectFill" />
+                            <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
+                            <Label Text="{Binding Price, StringFormat='C'}" FontSize="14" TextColor="Green"/>
+                        </VerticalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+
+        </CollectionView>
+
+    </VerticalStackLayout>
+</ContentPage>

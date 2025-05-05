@@ -1,0 +1,40 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BoutiqueApp.Views.CartPage"
+             Title="Košarica">
+
+    <VerticalStackLayout Padding="15">
+
+        <CollectionView ItemsSource="{Binding CartItems}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame Margin="5" BorderColor="LightGray" CornerRadius="10">
+                        <HorizontalStackLayout VerticalOptions="Center">
+
+                            <Label Text="{Binding Product.Name}" FontAttributes="Bold" WidthRequest="150"/>
+                            <Label Text="{Binding Product.Price, StringFormat='C'}" WidthRequest="80"/>
+                            <Label Text="{Binding Quantity}" WidthRequest="30"/>
+
+                            <Button
+    Text="+"
+    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                      Path=BindingContext.IncreaseQtyCommand}"
+    CommandParameter="{Binding}" />
+                            <Button
+    Text="-"
+    Command="{Binding Source={RelativeSource AncestorType={x:Type ContentPage}},
+                      Path=BindingContext.DecreaseQtyCommand}"
+    CommandParameter="{Binding}" />
+                            <Button Text="🗑" Clicked="OnDeleteClicked" CommandParameter="{Binding}" BackgroundColor="Transparent"/>
+                        </HorizontalStackLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Label Text="{Binding Total, StringFormat='Ukupno: {0:C}'}" FontSize="20" Margin="0,20,0,0" HorizontalOptions="End"/>
+
+        <Button Text="Dovrši kupnju" Margin="0,20,0,0" BackgroundColor="DarkGreen" TextColor="White" Clicked="OnCheckoutClicked"/>
+
+    </VerticalStackLayout>
+</ContentPage>
