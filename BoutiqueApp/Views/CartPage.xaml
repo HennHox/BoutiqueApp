@@ -12,7 +12,7 @@
                         <HorizontalStackLayout VerticalOptions="Center">
 
                             <Label Text="{Binding Product.Name}" FontAttributes="Bold" WidthRequest="150"/>
-                            <Label Text="{Binding Product.Price, StringFormat='C'}" WidthRequest="80"/>
+                            <Label Text="{Binding Product.Price, StringFormat='{0:C}'}" WidthRequest="80"/>
                             <Label Text="{Binding Quantity}" WidthRequest="30"/>
 
                             <Button

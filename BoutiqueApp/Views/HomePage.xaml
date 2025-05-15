@@ -37,7 +37,7 @@
                         <VerticalStackLayout Padding="10" Spacing="5">
                             <Image Source="{Binding ImageUrl}" HeightRequest="120" Aspect="AspectFill" />
                             <Label Text="{Binding Name}" FontAttributes="Bold" FontSize="16" />
-                            <Label Text="{Binding Price, StringFormat='C'}" FontSize="14" TextColor="Green"/>
+                            <Label Text="{Binding Price, StringFormat='{0:C}'}" FontSize="14" TextColor="Green"/>
                         </VerticalStackLayout>
                     </Frame>
                 </DataTemplate>
